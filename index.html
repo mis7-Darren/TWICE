@@ -155,7 +155,71 @@ h1 .pop{
   padding:3px 11px;border-radius:99px;
 }
 
-/* ── 彈出小卡 ── */
+/* ── 專輯彈窗 ── */
+.alb-top{
+  padding:26px 26px 20px;
+  display:flex;gap:18px;align-items:center;
+  border-bottom:3px dotted rgba(74,44,111,.2);
+  position:relative;
+}
+.alb-cover{
+  width:120px;height:120px;flex-shrink:0;
+  border-radius:12px;overflow:hidden;
+  border:3px solid var(--sc);
+  background:linear-gradient(135deg,#F3E8FF,#E3F2FB);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:3px 4px 0 rgba(74,44,111,.18);
+}
+.alb-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.alb-cover .ph.big{font-size:12px;color:#A796BB;text-align:center;padding:0 8px;}
+.alb-meta{font-family:"Noto Sans TC",sans-serif;min-width:0;}
+.alb-meta h3{font-size:22px;font-weight:900;line-height:1.25;margin-top:8px;word-break:break-word;}
+.alb-meta .en2{font-family:"Fredoka";font-size:13px;color:var(--sc);margin-top:4px;font-weight:600;}
+
+/* 曲目清單 */
+.tracks{list-style:none;display:grid;gap:4px;}
+.tracks li{border-radius:10px;transition:background .15s;}
+.tracks li a,
+.tracks li.noyt{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 12px;
+  text-decoration:none;color:#4A3A5C;
+  font-size:14px;line-height:1.4;
+}
+.tracks li a{border:2px solid transparent;border-radius:10px;}
+.tracks li a:hover,
+.tracks li a:focus-visible{
+  background:#FCF8FF;border-color:var(--sc);outline:none;
+}
+.tracks .tn{
+  font-family:"Fredoka";font-size:11px;font-weight:700;
+  color:#B9A9CA;flex-shrink:0;width:20px;
+}
+.tracks li a:hover .tn{color:var(--sc);}
+.tracks .tt{flex:1;min-width:0;}
+.tracks li a:hover .tt{color:var(--ink);font-weight:700;}
+.tracks .lead{
+  font-size:10px;font-weight:700;flex-shrink:0;
+  background:var(--sc);color:#fff;
+  padding:2px 8px;border-radius:99px;
+}
+.tracks .play{color:var(--sc);font-size:12px;flex-shrink:0;}
+.tracks li.noyt{color:#7A6A8C;}
+.tracks li.noyt .tt{opacity:.85;}
+.sheet-body .empty{
+  font-size:13.5px;color:#9A8AAC;line-height:1.8;
+  padding:16px;text-align:center;
+  border:2px dashed rgba(74,44,111,.25);border-radius:12px;
+}
+.sheet-body .tip{
+  font-size:11.5px;color:#9A8AAC;margin-top:12px;text-align:center;
+}
+@media (max-width:520px){
+  .alb-top{flex-direction:column;text-align:center;}
+  .alb-meta h3{font-size:19px;}
+}
+
+/* ── 成員彈出小卡 ── */
 .veil{
   position:fixed;inset:0;z-index:50;
   background:rgba(46,27,68,.55);
@@ -255,6 +319,17 @@ h1 .pop{
   color:var(--magenta);
 }
 .panel ol li b{color:var(--ink);}
+.panel ol.songs li a{
+  text-decoration:none;
+  border-bottom:2px solid transparent;
+  transition:border-color .15s,color .15s;
+}
+.panel ol.songs li a:hover b,
+.panel ol.songs li a:focus-visible b{color:var(--magenta);}
+.panel ol.songs li a:hover{border-bottom-color:var(--magenta);}
+.panel ol.songs li a::after{
+  content:" ▸";font-size:10px;color:var(--magenta);
+}
 .panel .links{display:grid;gap:8px;}
 .panel .links a{
   display:block;font-size:13.5px;font-weight:700;color:var(--grape);
@@ -263,6 +338,116 @@ h1 .pop{
 }
 .panel .links a:hover{background:var(--magenta);color:#fff;}
 .panel .links a span{display:block;font-size:11px;font-weight:400;opacity:.7;}
+
+/* ── 待補區塊 ── */
+.todo{
+  border:2.5px dashed rgba(74,44,111,.3);
+  border-radius:14px;
+  padding:20px 16px;
+  text-align:center;
+  background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(74,44,111,.03) 10px 20px);
+}
+.todo-mark{
+  display:inline-block;
+  background:var(--lemon);color:var(--grape);
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  padding:4px 14px;border-radius:99px;
+  margin-bottom:10px;
+}
+.todo p{font-size:13px;line-height:1.75;color:#8A7A9C;}
+
+/* 分類篩選按鈕 */
+.filt{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;
+}
+.filt button{
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:12.5px;font-weight:700;
+  padding:7px 15px;border-radius:99px;
+  border:2px solid var(--grape);background:var(--paper);color:var(--grape);
+  cursor:pointer;transition:background .15s,color .15s;
+}
+.filt button:hover{background:#F4EDFA;}
+.filt button.on{background:var(--grape);color:#fff;}
+.filt button:focus-visible{outline:2px solid var(--magenta);outline-offset:2px;}
+
+/* ── 歷代專輯：橫向捲軸 ── */
+.shelf-wrap{
+  background:var(--paper);
+  border:2.5px solid var(--grape);
+  border-radius:20px;
+  padding:22px 0 18px;
+  box-shadow:5px 6px 0 rgba(74,44,111,.13);
+  position:relative;
+  overflow:hidden;
+}
+/* 兩側漸層提示還有更多內容 */
+.shelf-wrap::before,
+.shelf-wrap::after{
+  content:"";position:absolute;top:0;bottom:0;width:34px;
+  pointer-events:none;z-index:2;
+}
+.shelf-wrap::before{left:0;background:linear-gradient(90deg,#fff 20%,transparent);}
+.shelf-wrap::after{right:0;background:linear-gradient(270deg,#fff 20%,transparent);}
+
+.shelf{
+  display:flex;gap:18px;
+  padding:0 26px;
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  cursor:grab;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(74,44,111,.35) transparent;
+  -webkit-overflow-scrolling:touch;
+}
+.shelf.dragging{cursor:grabbing;scroll-snap-type:none;}
+.shelf.dragging a{pointer-events:none;}
+.shelf::-webkit-scrollbar{height:8px;}
+.shelf::-webkit-scrollbar-track{background:transparent;}
+.shelf::-webkit-scrollbar-thumb{background:rgba(74,44,111,.28);border-radius:99px;}
+.shelf::-webkit-scrollbar-thumb:hover{background:rgba(74,44,111,.45);}
+
+.alb{
+  flex:0 0 158px;
+  scroll-snap-align:start;
+  text-decoration:none;color:inherit;
+  font-family:"Noto Sans TC",sans-serif;
+  transition:transform .18s;
+  background:none;border:none;padding:0;margin:0;
+  text-align:left;cursor:pointer;
+}
+.alb:hover,.alb:focus-visible{transform:translateY(-6px);outline:none;}
+.alb:focus-visible .cover{box-shadow:0 0 0 3px var(--magenta);}
+.alb .cover{
+  width:158px;height:158px;
+  border-radius:12px;overflow:hidden;
+  border:2.5px solid var(--kc, var(--grape));
+  background:linear-gradient(135deg,#F3E8FF,#E3F2FB);
+  box-shadow:3px 4px 0 rgba(74,44,111,.16);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;position:relative;
+}
+.alb .cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.alb .cover .kind2{
+  position:absolute;top:7px;left:7px;
+  background:var(--kc, var(--grape));color:#fff;
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  padding:3px 8px;border-radius:99px;
+  box-shadow:0 1px 4px rgba(0,0,0,.2);
+}
+.alb .cover .ph{
+  font-size:11px;color:#A796BB;letter-spacing:1px;text-align:center;padding:0 10px;
+}
+.alb .nm2{font-size:13.5px;font-weight:900;line-height:1.4;}
+.alb .dt{font-family:"Fredoka";font-size:11.5px;color:var(--magenta);margin-top:2px;}
+.alb:hover .nm2{color:var(--magenta);}
+
+@media (max-width:520px){
+  .alb,.alb .cover{flex-basis:132px;width:132px;}
+  .alb .cover{height:132px;}
+  .shelf{padding:0 18px;}
+}
 
 /* ── 電影橫幅 ── */
 .movie{
@@ -363,17 +548,17 @@ footer b{color:var(--magenta);}
     <div class="panel">
       <h3>入坑歌單</h3>
       <p class="sm">依序聽完，等於走過 TWICE 的十年</p>
-      <ol>
-        <li><b>Like OOH-AHH</b> — 出道曲，一切的起點</li>
-        <li><b>CHEER UP</b> — 讓她們變成國民女團的那首</li>
-        <li><b>TT</b> — 全世界都比過的手勢</li>
-        <li><b>What is Love?</b> — 甜度天花板</li>
-        <li><b>FANCY</b> — 從可愛轉大人的分水嶺</li>
-        <li><b>Feel Special</b> — 給彼此也給粉絲的歌</li>
-        <li><b>I CAN'T STOP ME</b> — 復古合成器名曲</li>
-        <li><b>SET ME FREE</b> — 舞台氣勢最強的一首</li>
-        <li><b>Strategy</b> — 近期最帶感的一首</li>
-        <li><b>THIS IS FOR</b> — 十週年給 ONCE 的信</li>
+      <ol class="songs">
+        <li><a href="https://www.youtube.com/watch?v=0rtV5esQT6I" target="_blank" rel="noopener"><b>Like OOH-AHH</b></a> — 出道曲，一切的起點</li>
+        <li><a href="https://www.youtube.com/watch?v=c7rCyll5AeY" target="_blank" rel="noopener"><b>CHEER UP</b></a> — 讓她們變成國民女團的那首</li>
+        <li><a href="https://www.youtube.com/watch?v=ePpPVE-GGJw" target="_blank" rel="noopener"><b>TT</b></a> — 全世界都比過的手勢</li>
+        <li><a href="https://www.youtube.com/watch?v=i0p1bmr0EmE" target="_blank" rel="noopener"><b>What is Love?</b></a> — 甜度天花板</li>
+        <li><a href="https://www.youtube.com/watch?v=kOHB85vDuow" target="_blank" rel="noopener"><b>FANCY</b></a> — 從可愛轉大人的分水嶺</li>
+        <li><a href="https://www.youtube.com/watch?v=3ymwOvzhwHs" target="_blank" rel="noopener"><b>Feel Special</b></a> — 給彼此也給粉絲的歌</li>
+        <li><a href="https://www.youtube.com/watch?v=CM4CkVFmTds" target="_blank" rel="noopener"><b>I CAN'T STOP ME</b></a> — 復古合成器名曲</li>
+        <li><a href="https://www.youtube.com/watch?v=w4cTYnOPdNk" target="_blank" rel="noopener"><b>SET ME FREE</b></a> — 舞台氣勢最強的一首</li>
+        <li><a href="https://www.youtube.com/watch?v=Sz_wWzgh-vQ" target="_blank" rel="noopener"><b>Strategy</b></a> — 近期最帶感的一首</li>
+        <li><a href="https://www.youtube.com/watch?v=eHHQaoEW30Q" target="_blank" rel="noopener"><b>THIS IS FOR</b></a> — 十週年給 ONCE 的信</li>
       </ol>
     </div>
 
@@ -399,6 +584,22 @@ footer b{color:var(--magenta);}
         <a href="https://open.spotify.com/search/TWICE" target="_blank" rel="noopener">Spotify<span>把歌單一次加進去</span></a>
       </div>
     </div>
+  </div>
+
+  <div class="binder-label">
+    <h2>歷代專輯</h2>
+    <div class="line"></div>
+    <div class="hint">拖曳 ↔ ・點看曲目</div>
+  </div>
+  <div class="filt">
+    <button class="on" data-k="ALL">全部 44</button>
+    <button data-k="KR">韓專 24</button>
+    <button data-k="JP">日專 12</button>
+    <button data-k="SOLO">SOLO 5</button>
+    <button data-k="UNIT">小分隊 3</button>
+  </div>
+  <div class="shelf-wrap">
+    <div class="shelf" id="shelf"></div>
   </div>
 
   <div class="binder-label">
@@ -437,7 +638,7 @@ footer b{color:var(--magenta);}
   </div>
 
   <footer>
-    這是粉絲自製的非官方入坑指南 ・ <br>
+    這是粉絲自製的非官方入坑指南<br>
     資料整理至 2026 年 8 月 ・ 最新動態請以 <b>JYP 官方公告</b> 為準
   </footer>
 </div>
@@ -513,7 +714,7 @@ const M = [
   ]
 },
 {
-  nm:"定延", en:"Jeongyeon", role:"中低音", c:"#4FC9B6", hair:"#2F231C",
+  nm:"定延", en:"Jeongyeon", role:"領唱", c:"#4FC9B6", hair:"#2F231C",
   style:"bob", extra:"none",
   photo:"img/jeongyeon.jpg",
   born:"1996.11.01", pos:"副主唱",
@@ -686,6 +887,190 @@ M.forEach((m,i)=>{
   binder.appendChild(b);
 });
 
+/* ═══════════════════════════════════════════
+   歷代專輯：封面圖放進 img/albums/ 資料夾，
+   再把下面的 cover 欄位填上檔名即可，
+   留空會顯示灰色佔位框。
+   ═══════════════════════════════════════════ */
+const ALBUMS = [
+  { nm:"The Story Begins", dt:"2015.10.20", kind:"KR", cover:"", tracks:[{"t": "Like OOH-AHH", "yt": "0rtV5esQT6I"}] },
+  { nm:"PAGE TWO", dt:"2016.04.25", kind:"KR", cover:"", tracks:[{"t": "CHEER UP", "yt": "c7rCyll5AeY"}] },
+  { nm:"TWICEcoaster: LANE 1", dt:"2016.10.24", kind:"KR", cover:"", tracks:[{"t": "TT", "yt": "ePpPVE-GGJw"}] },
+  { nm:"TWICEcoaster: LANE 2", dt:"2017.02.20", kind:"KR", cover:"", tracks:[{"t": "Knock Knock", "yt": ""}] },
+  { nm:"SIGNAL", dt:"2017.05.15", kind:"KR", cover:"", tracks:[{"t": "SIGNAL", "yt": ""}] },
+  { nm:"#TWICE", dt:"2017.06.28", kind:"JP", cover:"", tracks:[{"t": "TT -Japanese ver.-", "yt": ""}] },
+  { nm:"Twicetagram", dt:"2017.10.30", kind:"KR", cover:"", tracks:[{"t": "LIKEY", "yt": ""}] },
+  { nm:"Merry & Happy", dt:"2017.12.11", kind:"KR", cover:"", tracks:[{"t": "Heart Shaker", "yt": ""}] },
+  { nm:"What is Love?", dt:"2018.04.09", kind:"KR", cover:"", tracks:[{"t": "What is Love?", "yt": "i0p1bmr0EmE"}] },
+  { nm:"Summer Nights", dt:"2018.07.09", kind:"KR", cover:"", tracks:[{"t": "Dance The Night Away", "yt": ""}] },
+  { nm:"BDZ", dt:"2018.09.12", kind:"JP", cover:"", tracks:[{"t": "BDZ", "yt": ""}] },
+  { nm:"YES or YES", dt:"2018.11.05", kind:"KR", cover:"", tracks:[{"t": "YES or YES", "yt": ""}] },
+  { nm:"The Year of &quot;YES&quot;", dt:"2018.12.12", kind:"KR", cover:"", tracks:[{"t": "The Best Thing I Ever Did", "yt": ""}] },
+  { nm:"#TWICE2", dt:"2019.03.06", kind:"JP", cover:"", tracks:[] },
+  { nm:"FANCY YOU", dt:"2019.04.22", kind:"KR", cover:"", tracks:[{"t": "FANCY", "yt": "kOHB85vDuow"}] },
+  { nm:"Feel Special", dt:"2019.09.23", kind:"KR", cover:"", tracks:[{"t": "Feel Special", "yt": "3ymwOvzhwHs"}] },
+  { nm:"&TWICE", dt:"2019.11.20", kind:"JP", cover:"", tracks:[{"t": "Fake & True", "yt": ""}] },
+  { nm:"MORE & MORE", dt:"2020.06.01", kind:"KR", cover:"", tracks:[{"t": "MORE & MORE", "yt": ""}] },
+  { nm:"#TWICE3", dt:"2020.09.16", kind:"JP", cover:"", tracks:[{"t": "Stuck In My Head -Japanese ver.-", "yt": ""}] },
+  { nm:"Eyes wide open", dt:"2020.10.26", kind:"KR", cover:"", tracks:[{"t": "I CAN'T STOP ME", "yt": "CM4CkVFmTds"}] },
+  { nm:"Taste of Love", dt:"2021.06.11", kind:"KR", cover:"", tracks:[{"t": "Alcohol-Free", "yt": ""}] },
+  { nm:"Perfect World", dt:"2021.07.28", kind:"JP", cover:"", tracks:[{"t": "Perfect World", "yt": ""}] },
+  { nm:"Formula of Love: O+T=<3", dt:"2021.11.12", kind:"KR", cover:"", tracks:[{"t": "SCIENTIST", "yt": ""}] },
+  { nm:"#TWICE4", dt:"2022.03.16", kind:"JP", cover:"", tracks:[{"t": "SCIENTIST -Japanese ver.-", "yt": ""}] },
+  { nm:"IM NAYEON", dt:"2022.06.24", kind:"SOLO", cover:"", tracks:[{"t": "POP!", "yt": ""}, {"t": "NO PROBLEM (feat. Felix)", "yt": ""}, {"t": "LOVE COUNTDOWN (feat. Wonstein)", "yt": ""}, {"t": "CANDYFLOSS", "yt": ""}, {"t": "ALL OR NOTHING", "yt": ""}, {"t": "HAPPY BIRTHDAY TO YOU", "yt": ""}, {"t": "SUNSET", "yt": ""}] },
+  { nm:"Celebrate", dt:"2022.07.27", kind:"JP", cover:"", tracks:[{"t": "Celebrate", "yt": ""}] },
+  { nm:"BETWEEN 1&2", dt:"2022.08.26", kind:"KR", cover:"", tracks:[{"t": "Talk that Talk", "yt": ""}] },
+  { nm:"READY TO BE", dt:"2023.03.10", kind:"KR", cover:"", tracks:[{"t": "SET ME FREE", "yt": "w4cTYnOPdNk"}] },
+  { nm:"MISAMO: Masterpiece", dt:"2023.07.26", kind:"UNIT", cover:"", tracks:[{"t": "Do not touch", "yt": ""}] },
+  { nm:"JIHYO: ZONE", dt:"2023.08.18", kind:"SOLO", cover:"", tracks:[{"t": "Killin' Me Good", "yt": ""}] },
+  { nm:"The Remixes", dt:"2023.11.22", kind:"KR", cover:"", tracks:[] },
+  { nm:"With YOU-th", dt:"2024.02.23", kind:"KR", cover:"", tracks:[{"t": "ONE SPARK", "yt": ""}] },
+  { nm:"NAYEON: NA", dt:"2024.06.14", kind:"SOLO", cover:"", tracks:[{"t": "ABCD", "yt": ""}] },
+  { nm:"Dive", dt:"2024.07.17", kind:"JP", cover:"", tracks:[{"t": "Dive", "yt": ""}] },
+  { nm:"TZUYU: abouTZU", dt:"2024.09.06", kind:"SOLO", cover:"", tracks:[{"t": "Run Away", "yt": ""}, {"t": "Heartbreak in Heaven (feat. Peniel)", "yt": ""}, {"t": "Lazy Baby (feat. pH-1)", "yt": ""}, {"t": "Losing Sleep", "yt": ""}, {"t": "One Love", "yt": ""}, {"t": "Fly", "yt": ""}] },
+  { nm:"MISAMO: Haute Couture", dt:"2024.11.06", kind:"UNIT", cover:"", tracks:[{"t": "Identity", "yt": ""}] },
+  { nm:"STRATEGY", dt:"2024.12.06", kind:"KR", cover:"", tracks:[{"t": "Strategy (feat. Megan Thee Stallion)", "yt": "Sz_wWzgh-vQ"}] },
+  { nm:"#TWICE5", dt:"2025.05.14", kind:"JP", cover:"", tracks:[{"t": "Talk that Talk -Japanese ver.-", "yt": ""}] },
+  { nm:"THIS IS FOR", dt:"2025.07.11", kind:"KR", cover:"", tracks:[{"t": "THIS IS FOR", "yt": "eHHQaoEW30Q"}] },
+  { nm:"Enemy", dt:"2025.08.27", kind:"JP", cover:"", tracks:[{"t": "Enemy", "yt": ""}] },
+  { nm:"CHAEYOUNG: LIL FANTASY vol.1", dt:"2025.09.12", kind:"SOLO", cover:"", tracks:[{"t": "Shoot (Firecracker)", "yt": "tl2luF-JRlU"}, {"t": "AVOCADO (feat. Gliiico)", "yt": ""}, {"t": "Band-Aid", "yt": ""}, {"t": "Girl", "yt": ""}, {"t": "RIBBONS (feat. SUMIN, Jibin)", "yt": ""}, {"t": "DOWNPOUR (feat. Gliiico)", "yt": ""}, {"t": "BF", "yt": ""}, {"t": "Shadow Play", "yt": ""}, {"t": "My Guitar", "yt": ""}, {"t": "Lonely Doll", "yt": ""}] },
+  { nm:"TEN: The Story Goes On", dt:"2025.10.10", kind:"KR", cover:"", tracks:[{"t": "Me+You", "yt": "zqorlX_5oHQ"}] },
+  { nm:"MISAMO: Play", dt:"2026.02.04", kind:"UNIT", cover:"", tracks:[{"t": "Confetti", "yt": ""}] },
+  { nm:"#BEST 2015-2025", dt:"2026.08.26", kind:"JP", cover:"", tracks:[] },
+];
+
+const KIND = {
+  KR:   { label:"韓專", c:"#FF4E9B" },
+  JP:   { label:"日專", c:"#3FD9C4" },
+  SOLO: { label:"SOLO", c:"#FFB020" },
+  UNIT: { label:"小分隊", c:"#8C6BFF" },
+};
+
+const shelf = document.getElementById('shelf');
+
+function paintShelf(filter){
+  shelf.innerHTML = '';
+  const list = filter === 'ALL' ? ALBUMS : ALBUMS.filter(a => a.kind === filter);
+  list.forEach(a=>{
+    const k = KIND[a.kind] || KIND.KR;
+    const i = ALBUMS.indexOf(a);
+    const el = document.createElement('button');
+    el.className = 'alb';
+    el.style.setProperty('--kc', k.c);
+    el.setAttribute('aria-label', a.nm + ' 的曲目');
+    el.innerHTML = `
+      <div class="cover">${
+        a.cover
+          ? `<img src="img/albums/${a.cover}" alt="${a.nm}" loading="lazy"
+               onerror="this.parentNode.innerHTML='<span class=&quot;ph&quot;>封面待補</span>'">`
+          : `<span class="ph">封面待補</span>`
+      }<span class="kind2">${k.label}</span></div>
+      <div class="nm2">${a.nm}</div>
+      <div class="dt">${a.dt}</div>`;
+    el.addEventListener('click', ()=>{ if(!dragged) openAlbum(i); });
+    shelf.appendChild(el);
+  });
+  shelf.scrollLeft = 0;
+}
+paintShelf('ALL');
+
+/* ── 打開專輯：封面在上，曲目在下 ── */
+function openAlbum(i){
+  const a = ALBUMS[i];
+  const k = KIND[a.kind] || KIND.KR;
+  lastFocus = document.activeElement;
+  sheet.style.setProperty('--sc', k.c);
+
+  const cover = a.cover
+    ? `<img src="img/albums/${a.cover}" alt="${a.nm}">`
+    : `<span class="ph big">封面待補</span>`;
+
+  const tracks = (a.tracks && a.tracks.length)
+    ? `<ol class="tracks">` + a.tracks.map((t,n)=>{
+        const num = `<span class="tn">${String(n+1).padStart(2,'0')}</span>`;
+        const lead = n === 0 ? `<span class="lead">主打</span>` : '';
+        return t.yt
+          ? `<li><a href="https://www.youtube.com/watch?v=${t.yt}" target="_blank" rel="noopener">
+               ${num}<span class="tt">${t.t}</span>${lead}<span class="play">▶</span></a></li>`
+          : `<li class="noyt">${num}<span class="tt">${t.t}</span>${lead}</li>`;
+      }).join('') + `</ol>`
+    : `<p class="empty">曲目還沒整理，之後補上。</p>`;
+
+  const hasYt = (a.tracks || []).some(t=>t.yt);
+
+  sheet.innerHTML = `
+    <div class="alb-top">
+      <button class="shut" id="shut" aria-label="關閉">✕</button>
+      <div class="alb-cover">${cover}</div>
+      <div class="alb-meta">
+        <span class="tg hero">${k.label}</span>
+        <h3>${a.nm}</h3>
+        <div class="en2">${a.dt}</div>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="blk">
+        <h4>曲目</h4>
+        ${tracks}
+        ${hasYt ? `<p class="tip">有 ▶ 的曲目可以點開官方 MV</p>` : ''}
+      </div>
+    </div>`;
+  veil.classList.add('on');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('shut').addEventListener('click', close_);
+  document.getElementById('shut').focus();
+}
+
+/* 分類篩選 */
+document.querySelectorAll('.filt button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.filt button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    paintShelf(b.dataset.k);
+  });
+});
+
+/* 滑鼠拖曳橫移（手機原生觸控滑動已支援） */
+let dragged = false;
+(function(){
+  let down = false, startX = 0, startScroll = 0, moved = 0;
+
+  shelf.addEventListener('pointerdown', e=>{
+    if(e.pointerType === 'touch') return; // 觸控交給瀏覽器原生處理
+    down = true; moved = 0; dragged = false;
+    startX = e.clientX;
+    startScroll = shelf.scrollLeft;
+    shelf.classList.add('dragging');
+  });
+
+  shelf.addEventListener('pointermove', e=>{
+    if(!down) return;
+    const dx = e.clientX - startX;
+    moved = Math.abs(dx);
+    shelf.scrollLeft = startScroll - dx;
+    if(moved > 6) { dragged = true; e.preventDefault(); }
+  });
+
+  function stop(){
+    if(!down) return;
+    down = false;
+    shelf.classList.remove('dragging');
+    /* 稍後才解除，讓 click 事件先判斷完 */
+    setTimeout(()=>{ dragged = false; }, 60);
+  }
+  shelf.addEventListener('pointerup', stop);
+  shelf.addEventListener('pointerleave', stop);
+  shelf.addEventListener('pointercancel', stop);
+
+  /* 滑鼠滾輪也能橫移 */
+  shelf.addEventListener('wheel', e=>{
+    if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+      shelf.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }, {passive:false});
+})();
+
 /* ── 打開小卡 ── */
 const veil = document.getElementById('veil');
 const sheet = document.getElementById('sheet');
@@ -748,4 +1133,3 @@ document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && veil.classLis
 </script>
 </body>
 </html>
-
