@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONCE 收藏冊 ・ TWICE 入坑指南</title>
+<meta name="description" content="九張小卡，九個入坑理由。從零開始認識 TWICE。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grape:#4A2C6F;
+  --magenta:#FF4E9B;
+  --mint:#3FD9C4;
+  --lemon:#FFD84D;
+  --milk:#FFF4FA;
+  --ink:#2E1B44;
+  --paper:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{
+  font-family:"Fredoka","Noto Sans TC",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, #FFE0F0 0%, transparent 42%),
+    radial-gradient(circle at 88% 12%, #DFF6F2 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, #EFE3FF 0%, transparent 55%),
+    var(--milk);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── 背景圓點紙 ── */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(circle, rgba(74,44,111,.07) 1.4px, transparent 1.4px);
+  background-size:22px 22px;
+}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 80px;}
+
+/* ── 頁首 ── */
+header{padding:64px 0 36px;text-align:center;}
+.tape{
+  display:inline-block;
+  background:var(--lemon);
+  color:var(--grape);
+  font-weight:700;font-size:13px;letter-spacing:3px;
+  padding:7px 22px;
+  transform:rotate(-2.5deg);
+  box-shadow:2px 3px 0 rgba(74,44,111,.2);
+  margin-bottom:22px;
+}
+h1{
+  font-size:clamp(38px,8vw,76px);
+  font-weight:700;line-height:.98;letter-spacing:-1px;
+  color:var(--grape);
+}
+h1 .pop{
+  color:var(--magenta);
+  display:inline-block;
+  text-shadow:3px 3px 0 var(--lemon);
+}
+.lede{
+  margin:20px auto 0;max-width:600px;
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:16px;line-height:1.85;color:#6B5580;
+}
+@media (max-width:520px){
+  .lede br{display:none;}
+}
+.stats{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  margin-top:32px;
+}
+.stat{
+  padding:0 22px;border-right:2px dotted rgba(74,44,111,.22);
+  font-family:"Noto Sans TC",sans-serif;
+}
+.stat:last-child{border-right:none;}
+.stat b{display:block;font-family:"Fredoka";font-size:26px;color:var(--magenta);line-height:1.2;}
+.stat span{font-size:12px;color:#8A7A9C;letter-spacing:1px;}
+
+/* ── 收藏冊 ── */
+.binder-label{
+  display:flex;align-items:center;gap:14px;
+  margin:56px 0 22px;
+}
+.binder-label h2{
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:19px;font-weight:900;color:var(--grape);white-space:nowrap;
+}
+.binder-label .line{flex:1;height:3px;background:repeating-linear-gradient(90deg,rgba(74,44,111,.25) 0 8px,transparent 8px 16px);}
+.binder-label .hint{
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:12px;color:#9A8AAC;white-space:nowrap;
+}
+
+.binder{
+  background:var(--paper);
+  border:3px solid var(--grape);
+  border-radius:26px;
+  padding:26px;
+  box-shadow:8px 10px 0 rgba(74,44,111,.14);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+/* ── 小卡 ── */
+.card{
+  position:relative;
+  background:var(--paper);
+  border:2.5px solid var(--grape);
+  border-radius:18px;
+  padding:18px 12px 14px;
+  cursor:pointer;
+  text-align:center;
+  transition:transform .22s cubic-bezier(.3,1.5,.5,1), box-shadow .22s;
+  box-shadow:4px 5px 0 var(--cardc);
+  font-family:inherit;width:100%;
+}
+.card:hover,.card:focus-visible{
+  transform:translateY(-8px) rotate(-1.5deg);
+  box-shadow:7px 10px 0 var(--cardc);
+  outline:none;
+}
+.card:focus-visible{border-color:var(--magenta);}
+.card .slot{
+  position:absolute;top:9px;left:11px;
+  font-size:10px;font-weight:600;color:#C3B5D2;letter-spacing:1px;
+}
+.card svg{width:100%;max-width:112px;height:auto;display:block;margin:0 auto;}
+
+/* 照片頭像：圓角方形小卡 + 代表色外框 */
+.pic{
+  display:block;width:100%;max-width:130px;aspect-ratio:1;margin:0 auto;
+  border-radius:14px;overflow:hidden;
+  border:3px solid var(--pc);
+  background:#F4EDFA;
+  box-shadow:0 3px 10px rgba(74,44,111,.18);
+}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;}
+.sheet-top .pic{width:104px;height:104px;flex-shrink:0;margin:0;}
+.card .nm{
+  font-family:"Noto Sans TC",sans-serif;
+  font-weight:900;font-size:17px;margin-top:6px;
+}
+.card .en{font-size:11px;color:#9A8AAC;letter-spacing:1.5px;text-transform:uppercase;}
+.card .role{
+  display:inline-block;margin-top:8px;
+  background:var(--cardc);color:#fff;
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:11px;font-weight:700;
+  padding:3px 11px;border-radius:99px;
+}
+
+/* ── 彈出小卡 ── */
+.veil{
+  position:fixed;inset:0;z-index:50;
+  background:rgba(46,27,68,.55);
+  backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;overflow-y:auto;
+}
+.veil.on{display:flex;}
+.sheet{
+  background:var(--paper);
+  border:3px solid var(--grape);
+  border-radius:24px;
+  max-width:600px;width:100%;
+  max-height:88vh;overflow-y:auto;
+  box-shadow:10px 12px 0 rgba(0,0,0,.25);
+  animation:rise .32s cubic-bezier(.2,1.4,.4,1) both;
+}
+@keyframes rise{from{transform:translateY(26px) scale(.94);opacity:0;}to{transform:none;opacity:1;}}
+.sheet-top{
+  padding:26px 26px 20px;
+  display:flex;gap:18px;align-items:center;
+  border-bottom:3px dotted rgba(74,44,111,.2);
+  position:relative;
+}
+.sheet-top svg{width:96px;height:96px;flex-shrink:0;}
+.sheet-top .who h3{font-family:"Noto Sans TC",sans-serif;font-size:26px;font-weight:900;line-height:1.2;}
+.sheet-top .who .en2{font-size:12px;letter-spacing:2px;color:#9A8AAC;text-transform:uppercase;}
+.sheet-top .who .tags{margin-top:9px;display:flex;flex-wrap:wrap;gap:6px;}
+.tg{
+  font-family:"Noto Sans TC",sans-serif;font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:99px;background:#F2ECF9;color:var(--grape);
+}
+.tg.hero{background:var(--sc);color:#fff;}
+.shut{
+  position:absolute;top:14px;right:16px;
+  width:32px;height:32px;border-radius:50%;
+  border:2px solid var(--grape);background:#fff;color:var(--grape);
+  font-size:17px;line-height:1;cursor:pointer;font-family:inherit;
+}
+.shut:hover{background:var(--magenta);color:#fff;border-color:var(--magenta);}
+.sheet-body{padding:22px 26px 28px;font-family:"Noto Sans TC",sans-serif;}
+.blk{margin-bottom:22px;}
+.blk:last-child{margin-bottom:0;}
+.blk h4{
+  font-size:12px;font-weight:900;letter-spacing:2px;color:var(--sc);
+  margin-bottom:9px;display:flex;align-items:center;gap:8px;
+}
+.blk h4::after{content:"";flex:1;height:2px;background:var(--sc);opacity:.25;}
+.blk p{font-size:14.5px;line-height:1.9;color:#4A3A5C;}
+.facts{list-style:none;display:grid;gap:7px;}
+.facts li{
+  font-size:14px;line-height:1.7;color:#4A3A5C;
+  padding-left:20px;position:relative;
+}
+.facts li::before{
+  content:"";position:absolute;left:2px;top:9px;
+  width:8px;height:8px;border-radius:50%;background:var(--sc);
+}
+.mats{display:grid;gap:9px;}
+.mat{
+  display:flex;align-items:center;gap:12px;
+  border:2px solid #EDE4F5;border-radius:14px;
+  padding:11px 14px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,transform .15s;
+}
+.mat:hover{border-color:var(--sc);background:#FCF8FF;transform:translateX(3px);}
+.mat .kind{
+  font-size:10px;font-weight:900;letter-spacing:1px;
+  background:var(--sc);color:#fff;padding:3px 8px;border-radius:6px;flex-shrink:0;
+}
+.mat .t{font-size:14px;font-weight:700;line-height:1.4;}
+.mat .d{font-size:12px;color:#8A7A9C;line-height:1.4;}
+.mat .go{margin-left:auto;color:var(--sc);font-size:15px;flex-shrink:0;}
+
+/* ── 團體物料 ── */
+.deck{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;
+}
+.panel{
+  background:var(--paper);
+  border:2.5px solid var(--grape);
+  border-radius:20px;padding:22px;
+  box-shadow:5px 6px 0 rgba(74,44,111,.13);
+  font-family:"Noto Sans TC",sans-serif;
+}
+.panel h3{font-size:16px;font-weight:900;margin-bottom:4px;}
+.panel .sm{font-size:12px;color:#9A8AAC;margin-bottom:14px;}
+.panel ol{list-style:none;counter-reset:s;display:grid;gap:8px;}
+.panel ol li{
+  counter-increment:s;font-size:13.5px;line-height:1.6;
+  padding-left:30px;position:relative;color:#4A3A5C;
+}
+.panel ol li::before{
+  content:counter(s,decimal-leading-zero);
+  position:absolute;left:0;top:1px;
+  font-family:"Fredoka";font-size:11px;font-weight:700;
+  color:var(--magenta);
+}
+.panel ol li b{color:var(--ink);}
+.panel .links{display:grid;gap:8px;}
+.panel .links a{
+  display:block;font-size:13.5px;font-weight:700;color:var(--grape);
+  text-decoration:none;padding:9px 12px;border-radius:11px;
+  background:#F6F1FC;transition:background .15s,color .15s;
+}
+.panel .links a:hover{background:var(--magenta);color:#fff;}
+.panel .links a span{display:block;font-size:11px;font-weight:400;opacity:.7;}
+
+/* ── 電影橫幅 ── */
+.movie{
+  display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+  background:linear-gradient(110deg,#F6E3FF 0%,#DCEEFB 100%);
+  border:2.5px solid var(--grape);border-radius:20px;
+  padding:24px 26px;text-decoration:none;color:inherit;
+  box-shadow:5px 6px 0 rgba(74,44,111,.13);
+  font-family:"Noto Sans TC",sans-serif;
+  transition:transform .18s,box-shadow .18s;
+}
+.movie:hover{transform:translateY(-4px);box-shadow:7px 10px 0 rgba(74,44,111,.18);}
+.mv-l{flex:1;min-width:230px;}
+.mv-tag{
+  display:inline-block;background:var(--grape);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:1.5px;
+  padding:4px 12px;border-radius:99px;margin-bottom:10px;
+}
+.movie h3{
+  font-family:"Fredoka";font-size:clamp(24px,4.5vw,34px);
+  font-weight:700;color:#B658D6;letter-spacing:.5px;line-height:1.1;
+}
+.movie p{font-size:13.5px;line-height:1.8;color:#5A4670;margin-top:8px;}
+.mv-r{text-align:center;padding-left:22px;border-left:3px dotted rgba(74,44,111,.25);}
+.mv-d{display:block;font-family:"Fredoka";font-size:36px;font-weight:700;color:var(--magenta);line-height:1;}
+.mv-s{display:block;font-size:12px;color:#6B5580;margin-top:4px;letter-spacing:2px;}
+.mv-go{display:block;font-size:12px;font-weight:700;color:var(--grape);margin-top:12px;}
+@media (max-width:600px){
+  .mv-r{border-left:none;padding-left:0;border-top:3px dotted rgba(74,44,111,.25);padding-top:14px;width:100%;}
+}
+
+/* ── 時間軸 ── */
+.line-wrap{
+  background:var(--paper);border:2.5px solid var(--grape);
+  border-radius:20px;padding:26px;
+  box-shadow:5px 6px 0 rgba(74,44,111,.13);
+  font-family:"Noto Sans TC",sans-serif;
+}
+.tl{list-style:none;display:grid;gap:0;}
+.tl li{
+  display:grid;grid-template-columns:76px 1fr;gap:14px;
+  padding:12px 0;border-bottom:2px dotted rgba(74,44,111,.15);
+}
+.tl li:last-child{border-bottom:none;}
+.tl .yr{font-family:"Fredoka";font-weight:700;font-size:14px;color:var(--magenta);}
+.tl .ev{font-size:13.5px;line-height:1.65;color:#4A3A5C;}
+.tl .ev b{color:var(--ink);}
+
+/* ── 頁尾 ── */
+footer{
+  text-align:center;margin-top:56px;
+  font-family:"Noto Sans TC",sans-serif;
+  font-size:12px;line-height:2;color:#9A8AAC;
+}
+footer b{color:var(--magenta);}
+
+@media (max-width:720px){
+  .binder{grid-template-columns:repeat(2,1fr);gap:14px;padding:16px;}
+  .stat{padding:0 14px;}
+  .sheet-top{flex-direction:column;text-align:center;gap:12px;}
+  .sheet-top .who .tags{justify-content:center;}
+}
+@media (max-width:400px){
+  .binder{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="tape">ONCE 收藏冊 ・ 2015 → 2026</div>
+    <h1>九張小卡，<br>九個<span class="pop">入坑</span>理由</h1>
+    <p class="lede">TWICE 出道十年，歌太多、綜藝太多，<br>點任何一張卡，可以看那位成員的物料。</p>
+    <div class="stats">
+      <div class="stat"><b>9</b><span>成員</span></div>
+      <div class="stat"><b>10+</b><span>年</span></div>
+      <div class="stat"><b>81</b><span>場世巡</span></div>
+      <div class="stat"><b>ONCE</b><span>粉絲名</span></div>
+    </div>
+  </header>
+
+  <div class="binder-label">
+    <h2>成員小卡</h2>
+    <div class="line"></div>
+    <div class="hint">點卡片打開 ↓</div>
+  </div>
+  <div class="binder" id="binder"></div>
+
+  <div class="binder-label">
+    <h2>第一次聽，從這裡</h2>
+    <div class="line"></div>
+  </div>
+  <div class="deck">
+    <div class="panel">
+      <h3>入坑歌單</h3>
+      <p class="sm">依序聽完，等於走過 TWICE 的十年</p>
+      <ol>
+        <li><b>Like OOH-AHH</b> — 出道曲，一切的起點</li>
+        <li><b>CHEER UP</b> — 讓她們變成國民女團的那首</li>
+        <li><b>TT</b> — 全世界都比過的手勢</li>
+        <li><b>What is Love?</b> — 甜度天花板</li>
+        <li><b>FANCY</b> — 從可愛轉大人的分水嶺</li>
+        <li><b>Feel Special</b> — 給彼此也給粉絲的歌</li>
+        <li><b>I CAN'T STOP ME</b> — 復古合成器名曲</li>
+        <li><b>SET ME FREE</b> — 舞台氣勢最強的一首</li>
+        <li><b>Strategy</b> — 近期最帶感的一首</li>
+        <li><b>THIS IS FOR</b> — 十週年給 ONCE 的信</li>
+      </ol>
+    </div>
+
+    <div class="panel">
+      <h3>綜藝與影片</h3>
+      <p class="sm">想看她們本人有多好笑，看這些</p>
+      <div class="links">
+        <a href="https://www.youtube.com/results?search_query=TWICE+TV" target="_blank" rel="noopener">TWICE TV<span>官方幕後系列，最完整的日常</span></a>
+        <a href="https://www.youtube.com/results?search_query=TIME+TO+TWICE" target="_blank" rel="noopener">TIME TO TWICE<span>自製綜藝，笑點密度最高</span></a>
+        <a href="https://www.youtube.com/results?search_query=TWICE+Killing+Voice" target="_blank" rel="noopener">딩고 Killing Voice<span>連唱代表曲，一次補完</span></a>
+        <a href="https://www.youtube.com/results?search_query=TWICE+週間偶像" target="_blank" rel="noopener">週間偶像 / 認識的哥哥<span>經典韓綜出演</span></a>
+        <a href="https://www.youtube.com/results?search_query=TWICE+MV" target="_blank" rel="noopener">官方 MV 播放清單<span>JYP 官方頻道</span></a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>該追蹤哪裡</h3>
+      <p class="sm">官方管道，情報最快</p>
+      <div class="links">
+        <a href="https://www.youtube.com/results?search_query=TWICE+official" target="_blank" rel="noopener">YouTube<span>MV、幕後、直播</span></a>
+        <a href="https://www.instagram.com/twicetagram/" target="_blank" rel="noopener">Instagram<span>@twicetagram</span></a>
+        <a href="https://x.com/JYPETWICE" target="_blank" rel="noopener">X (Twitter)<span>@JYPETWICE</span></a>
+        <a href="https://open.spotify.com/search/TWICE" target="_blank" rel="noopener">Spotify<span>把歌單一次加進去</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="binder-label">
+    <h2>大銀幕見</h2>
+    <div class="line"></div>
+  </div>
+  <a class="movie" href="https://twiceoneinamillion.com" target="_blank" rel="noopener">
+    <div class="mv-l">
+      <span class="mv-tag">十週年紀念電影</span>
+      <h3>ONE IN A MILLION</h3>
+      <p>九個人、十年份的舞台與幕後，剪成一部電影。這也是 TWICE 官方問候語的那一句 —— One in a million!</p>
+    </div>
+    <div class="mv-r">
+      <span class="mv-d">10.20</span>
+      <span class="mv-s">全台上映</span>
+      <span class="mv-go">官方網站 →</span>
+    </div>
+  </a>
+
+  <div class="binder-label">
+    <h2>十年速讀</h2>
+    <div class="line"></div>
+  </div>
+  <div class="line-wrap">
+    <ul class="tl">
+      <li><span class="yr">2015.05</span><span class="ev">選秀節目 <b>《SIXTEEN》</b> 開播，九人陣容由此定案</span></li>
+      <li><span class="yr">2015.10</span><span class="ev">以迷你專輯 <b>《The Story Begins》</b> 出道，主打〈Like OOH-AHH〉</span></li>
+      <li><span class="yr">2016</span><span class="ev">〈CHEER UP〉與〈TT〉接連爆紅，奠定國民女團地位</span></li>
+      <li><span class="yr">2019</span><span class="ev">〈FANCY〉開啟成熟轉型，海外市場全面展開</span></li>
+      <li><span class="yr">2022.07</span><span class="ev">九人<b>全員續約</b>，破解 K-pop 的「七年魔咒」</span></li>
+      <li><span class="yr">2023</span><span class="ev">日籍三人小分隊 <b>MISAMO</b> 出道；志效、娜璉個人專輯陸續問世</span></li>
+      <li><span class="yr">2025.10</span><span class="ev"><b>出道十週年</b>，發行《TEN: The Story Goes On》</span></li>
+      <li><span class="yr">2025–26</span><span class="ev"><b>THIS IS FOR</b> 世界巡演，共 81 場，途經高雄與台北大巨蛋</span></li>
+      <li><span class="yr">2026.08</span><span class="ev">精選輯 <b>《#BEST 2015-2025》</b> 登場，四片裝五十首</span></li>
+    </ul>
+  </div>
+
+  <footer>
+    這是粉絲自製的非官方入坑指南 ・ 頭像為原創插畫，非本人肖像<br>
+    資料整理至 2026 年 8 月 ・ 最新動態請以 <b>JYP 官方公告</b> 為準
+  </footer>
+</div>
+
+<div class="veil" id="veil">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   換照片的方法：
+   1. 把圖片放進 repo 的 img/ 資料夾，例如 img/nayeon.jpg
+   2. 在下面該成員資料裡加一行： photo:"img/nayeon.jpg",
+   3. 沒加 photo 的成員會自動維持插畫頭像
+   建議：正方形、至少 300x300、臉在正中間，檔案壓到 100KB 以內
+   ═══════════════════════════════════════════════════ */
+const M = [
+{
+  nm:"志效", en:"Jihyo", role:"隊長", c:"#FF5C85", hair:"#2E2119",
+  style:"long", extra:"none",
+  photo:"img/jihyo.jpg",
+  born:"1997.02.01", pos:"隊長 ・ 主唱",
+  one:"練了十年才出道，然後把整個團扛起來。",
+  facts:[
+    "本名朴志秀，出道前當了約十年的練習生",
+    "由成員票選出來的隊長，帶團十年",
+    "團內主唱，現場穩定度是公認的定心丸",
+    "2023 年推出個人專輯《ZONE》，主打〈Killin' Me Good〉"
+  ],
+  mats:[
+    {k:"SOLO", t:"Killin' Me Good", d:"個人專輯主打，成熟路線", q:"JIHYO Killin Me Good MV"},
+    {k:"現場", t:"志效的 live 合集", d:"為什麼大家說她是保險", q:"Jihyo live vocals"},
+    {k:"名場面", t:"演唱會的隊長發言", d:"十年份的重量都在這裡", q:"Jihyo leader speech concert"},
+    {k:"高音", t:"Feel Special 的最後一段", d:"整首歌的情緒出口", q:"Jihyo Feel Special high note"}
+  ]
+},
+{
+  nm:"Mina", en:"Mina", role:"優雅擔當", c:"#6FA9FF", hair:"#4A3226",
+  style:"long", extra:"none",
+  photo:"img/mina.jpg",
+  born:"1997.03.24", pos:"主舞 ・ 副唱",
+  one:"跳了十一年芭蕾，動作乾淨到像被修圖過。",
+  facts:[
+    "在美國德州出生，於日本神戶長大",
+    "芭蕾底子超過十年，肢體線條在團內辨識度極高",
+    "被粉絲暱稱為企鵝，安靜但很有存在感",
+    "日籍小分隊 MISAMO 成員之一"
+  ],
+  mats:[
+    {k:"必看", t:"Mina 的舞蹈線條", d:"芭蕾底子藏不住", q:"TWICE Mina dance line"},
+    {k:"直拍", t:"官方 focus 影片", d:"專注看她一個人跳完整首", q:"TWICE Mina fancam"},
+    {k:"名場面", t:"反差感合集", d:"安靜的人爆發起來最兇", q:"TWICE Mina funny moments"},
+    {k:"小分隊", t:"MISAMO", d:"日文作品中的另一種氣質", q:"MISAMO Mina"}
+  ]
+},
+{
+  nm:"娜璉", en:"Nayeon", role:"門面擔當", c:"#FF7BA8", hair:"#8B4A2F",
+  style:"long", extra:"braid",
+  photo:"img/nayeon.jpg",
+  born:"1995.09.22", pos:"副主唱 ・ 副舞蹈 ・ Center",
+  one:"一笑就把整個舞台點亮的人。",
+  facts:[
+    "TWICE 最年長的成員，也是第一位確定入選的",
+    "招牌兔牙笑容，是團內公認的門面",
+    "2022 年以《IM NAYEON》成為團內首位 solo 出道的成員",
+    "2024 年推出第二張個人專輯《NA》"
+  ],
+  mats:[
+    {k:"SOLO", t:"POP!", d:"個人出道曲，明亮到有點犯規", q:"NAYEON POP MV"},
+    {k:"SOLO", t:"ABCD", d:"第二張個人專輯主打", q:"NAYEON ABCD MV"},
+    {k:"舞台", t:"演唱會 solo 舞台", d:"看她怎麼一個人撐滿全場", q:"NAYEON solo stage"},
+    {k:"綜藝", t:"娜璉的搞笑合集", d:"團內氣氛製造機的實錄", q:"TWICE Nayeon funny moments"}
+  ]
+},
+{
+  nm:"定延", en:"Jeongyeon", role:"中低音", c:"#4FC9B6", hair:"#2F231C",
+  style:"bob", extra:"none",
+  photo:"img/jeongyeon.jpg",
+  born:"1996.11.01", pos:"副主唱",
+  one:"短髮加低音，團裡最帥的那一掛。",
+  facts:[
+    "出道前正式更名，本名原為柳京完",
+    "厚實的中低音負責撐住整首歌的底",
+    "親姊姊是演員孔昇延",
+    "2026 年 8 月轉往 VARO 娛樂發展演員路線，仍是 TWICE 成員"
+  ],
+  mats:[
+    {k:"名場面", t:"短髮定延的舞台", d:"girl crush 的定義", q:"Jeongyeon short hair stage"},
+    {k:"歌唱", t:"翻唱與 cover", d:"聲音的質感最能在這裡聽出來", q:"Jeongyeon cover"},
+    {k:"綜藝", t:"吐槽擔當合集", d:"團內最直球的那張嘴", q:"TWICE Jeongyeon funny"},
+    {k:"合唱", t:"與姊姊孔昇延的同框", d:"姊妹同框的難得畫面", q:"Jeongyeon Gong Seung Yeon"}
+  ]
+},
+{
+  nm:"子瑜", en:"Tzuyu", role:"忙內", c:"#4FD0E8", hair:"#4A3020",
+  style:"long", extra:"wave",
+  photo:"img/tzuyu.jpg",
+  born:"1999.06.14", pos:"副舞 ・ 副唱 ・ 忙內",
+  one:"台南出身，走出台灣的那張臉。",
+  facts:[
+    "來自台灣台南，團內年紀最小的忙內",
+    "多次入選全球百大美女，視覺辨識度極高",
+    "2024 年推出個人專輯《abouTZU》，主打〈Run Away〉",
+    "2025 年 11 月首度帶著團員回高雄開唱，全場動容"
+  ],
+  mats:[
+    {k:"SOLO", t:"Run Away", d:"個人專輯主打，冷冽路線", q:"TZUYU Run Away MV"},
+    {k:"直拍", t:"官方 focus 影片", d:"腿長和舞台氣場的實錄", q:"TWICE Tzuyu fancam"},
+    {k:"名場面", t:"高雄場的那封信", d:"回家鄉開唱的那一段", q:"子瑜 高雄 演唱會 信"},
+    {k:"反差", t:"忙內的搞笑時刻", d:"冷豔外表下的本人", q:"TWICE Tzuyu funny moments"}
+  ]
+},
+{
+  nm:"Momo", en:"Momo", role:"主舞", c:"#FFA23D", hair:"#1F1A22",
+  style:"bob", extra:"wave",
+  photo:"img/momo.jpg",
+  born:"1996.11.09", pos:"主舞 ・ 副唱 ・ 副 Rap",
+  one:"因為跳舞太強，被公司破例撿回來的人。",
+  facts:[
+    "日本京都出身，《SIXTEEN》一度落選，因舞蹈實力被追加入選",
+    "姊姊平井花是專業舞者，姊妹倆從小一起練舞",
+    "日籍小分隊 MISAMO 成員之一",
+    "世巡個人舞台〈MOVE LIKE THAT〉展現主舞真正的實力"
+  ],
+  mats:[
+    {k:"必看", t:"Momo 的 dance break", d:"入坑最快的捷徑，看一次就懂", q:"TWICE Momo dance break"},
+    {k:"舞蹈", t:"個人 dance cover", d:"跳別人的歌也照樣壓場", q:"Momo dance cover"},
+    {k:"舞台", t:"MOVE LIKE THAT", d:"世巡的個人 solo 舞台", q:"Momo MOVE LIKE THAT"},
+    {k:"小分隊", t:"MISAMO", d:"日籍三人組的日文作品", q:"MISAMO MV"}
+  ]
+},
+{
+  nm:"多賢", en:"Dahyun", role:"Rap 擔當", c:"#7FCFFF", hair:"#6B4630",
+  style:"long", extra:"none",
+  photo:"img/dahyun.jpg",
+  born:"1998.05.28", pos:"領隊 Rap ・ 副唱",
+  one:"那個把「鷹之舞」跳成傳說的人。",
+  facts:[
+    "在校內舞蹈表演被 JYP 星探發掘，2012 年 7 月 7 日成為練習生",
+    "招牌的「鷹之舞」是她出道前就有的名場面",
+    "會彈鋼琴，也常被說是團內的搞笑總機",
+    "本人多次公開表示無法沒有巧克力"
+  ],
+  mats:[
+    {k:"名場面", t:"鷹之舞", d:"一切的起點，看過的人都忘不掉", q:"Dahyun eagle dance"},
+    {k:"綜藝", t:"多賢的反應合集", d:"表情管理完全放棄的那種好笑", q:"TWICE Dahyun funny"},
+    {k:"才藝", t:"鋼琴演奏", d:"認真起來也是很可以", q:"Dahyun piano"},
+    {k:"Rap", t:"Rap 段落合集", d:"清亮的聲線很好認", q:"TWICE Dahyun rap"}
+  ]
+},
+{
+  nm:"Sana", en:"Sana", role:"氣氛擔當", c:"#A98CFF", hair:"#D19A52",
+  style:"long", extra:"none",
+  photo:"img/sana.jpg",
+  born:"1996.12.29", pos:"副唱",
+  one:"那句「shy shy shy」的本人。",
+  facts:[
+    "日本大阪出身，團內唯一的獨生女",
+    "〈CHEER UP〉的「shy shy shy」成為 K-pop 史上最出圈的單人片段之一",
+    "日籍小分隊 MISAMO 成員之一",
+    "公認的氣氛製造者，鏡頭前後都一樣熱情"
+  ],
+  mats:[
+    {k:"名場面", t:"shy shy shy", d:"傳說級的三秒鐘", q:"Sana shy shy shy CHEER UP"},
+    {k:"直拍", t:"Sana 官方 focus", d:"表情管理的教科書", q:"TWICE Sana fancam"},
+    {k:"綜藝", t:"日常放電合集", d:"這就是她被喜歡的原因", q:"TWICE Sana cute moments"},
+    {k:"小分隊", t:"MISAMO", d:"日文歌路線的另一面", q:"MISAMO Sana"}
+  ]
+},
+{
+  nm:"彩瑛", en:"Chaeyoung", role:"主 Rap", c:"#FF8A5C", hair:"#241C1E",
+  style:"long", extra:"none",
+  photo:"img/chaeyoung.jpg",
+  born:"1999.04.23", pos:"主 Rap ・ 副唱",
+  one:"會畫畫、會寫詞，團裡最有藝術家氣質的。",
+  facts:[
+    "團內主 Rap，多首歌曲的 Rap 段落由她自己作詞",
+    "很會畫畫，作品常在社群和周邊上出現",
+    "個子小但氣場很強，被稱為小猛獸",
+    "2026 年 8 月離開 JYP 娛樂，仍持續以 TWICE 成員活動"
+  ],
+  mats:[
+    {k:"Rap", t:"彩瑛的 Rap 合集", d:"辨識度最高的聲線", q:"TWICE Chaeyoung rap"},
+    {k:"創作", t:"參與作詞的曲目", d:"歌詞裡看得到她本人", q:"Chaeyoung lyrics credit"},
+    {k:"才藝", t:"畫作與塗鴉", d:"另一個身分是插畫家", q:"Chaeyoung drawing art"},
+    {k:"名場面", t:"小猛獸時刻", d:"個子小，反應最大", q:"TWICE Chaeyoung funny"}
+  ]
+}
+];
+
+/* ── 頭像：有 photo 就用照片，沒有就用插畫 ── */
+function av(m, size){
+  if(m.photo){
+    return `<span class="pic" style="--pc:${m.c}"><img src="${m.photo}" alt="${m.nm}" loading="lazy"
+      onerror="this.parentNode.outerHTML=drawFace(${JSON.stringify(JSON.stringify(m))})"></span>`;
+  }
+  return drawFace(m);
+}
+
+function drawFace(m){
+  if(typeof m === 'string') m = JSON.parse(m);
+  const skin = "#FFE4CE", h = m.hair;
+  let back = "", ex = "";
+  if(m.style === "long"){
+    back = `<path d="M18 66 Q18 20 60 20 Q102 20 102 66 L102 100 Q102 104 98 104 L88 104 Q94 72 60 72 Q26 72 32 104 L22 104 Q18 104 18 100 Z" fill="${h}"/>`;
+  }else if(m.style === "bob"){
+    back = `<path d="M20 64 Q20 20 60 20 Q100 20 100 64 L100 84 Q100 90 94 90 Q97 62 60 62 Q23 62 26 90 Q20 90 20 84 Z" fill="${h}"/>
+            <path d="M26 62 Q22 78 28 90 Q36 88 34 70 Z" fill="${h}"/>
+            <path d="M94 62 Q98 78 92 90 Q84 88 86 70 Z" fill="${h}"/>`;
+  }else{
+    back = `<path d="M24 62 Q24 22 60 22 Q96 22 96 62 L96 74 Q96 78 92 78 L86 78 Q90 56 60 56 Q30 56 34 78 L28 78 Q24 78 24 74 Z" fill="${h}"/>`;
+  }
+  if(m.extra === "halfbun") ex = `<circle cx="60" cy="18" r="11" fill="${h}"/><circle cx="60" cy="18" r="4" fill="rgba(255,255,255,.25)"/>`;
+  if(m.extra === "bow") ex = `<g transform="translate(88,28) rotate(18)"><path d="M0 0 L-11 -7 L-11 7 Z" fill="${m.c}"/><path d="M0 0 L11 -7 L11 7 Z" fill="${m.c}"/><circle cx="0" cy="0" r="3.5" fill="#fff"/></g>`;
+  if(m.extra === "beanie") ex = `<path d="M26 44 Q26 16 60 16 Q94 16 94 44 Z" fill="${m.c}"/><rect x="24" y="42" width="72" height="9" rx="4.5" fill="${m.c}" opacity=".8"/>`;
+  if(m.extra === "braid") ex = `<g fill="${h}"><ellipse cx="96" cy="80" rx="6" ry="8"/><ellipse cx="97" cy="93" rx="5.5" ry="7"/><ellipse cx="96" cy="104" rx="5" ry="6"/></g>`;
+  if(m.extra === "wave") ex = `<g fill="none" stroke="rgba(255,255,255,.22)" stroke-width="3" stroke-linecap="round"><path d="M30 52 Q36 60 30 68"/><path d="M90 52 Q84 60 90 68"/></g>`;
+  return `<svg viewBox="0 0 120 120" width="${size||''}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    ${back}
+    <circle cx="60" cy="60" r="33" fill="${skin}"/>
+    <path d="M60 26 C40 26 28 41 28 58 C32 50 41 45 52 45 C57 45 60 41 60 37 C60 41 64 46 72 46 C83 46 89 51 92 58 C92 41 80 26 60 26 Z" fill="${h}"/>
+    <ellipse cx="48" cy="63" rx="4.2" ry="5.2" fill="#3B2A24"/>
+    <ellipse cx="72" cy="63" rx="4.2" ry="5.2" fill="#3B2A24"/>
+    <circle cx="49.6" cy="61" r="1.5" fill="#fff"/>
+    <circle cx="73.6" cy="61" r="1.5" fill="#fff"/>
+    <ellipse cx="41" cy="71" rx="5" ry="3.2" fill="${m.c}" opacity=".38"/>
+    <ellipse cx="79" cy="71" rx="5" ry="3.2" fill="${m.c}" opacity=".38"/>
+    <path d="M54 75 Q60 81 66 75" stroke="#B5654A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    ${ex}
+  </svg>`;
+}
+
+/* ── 排出收藏冊 ── */
+const binder = document.getElementById('binder');
+M.forEach((m,i)=>{
+  const b = document.createElement('button');
+  b.className = 'card';
+  b.style.setProperty('--cardc', m.c);
+  b.setAttribute('aria-label', m.nm + ' 的小卡');
+  b.innerHTML = `<span class="slot">${String(i+1).padStart(2,'0')}</span>
+    ${av(m)}
+    <div class="nm">${m.nm}</div>
+    <div class="en">${m.en}</div>
+    <div class="role">${m.role}</div>`;
+  b.addEventListener('click', ()=>open_(i));
+  binder.appendChild(b);
+});
+
+/* ── 打開小卡 ── */
+const veil = document.getElementById('veil');
+const sheet = document.getElementById('sheet');
+let lastFocus = null;
+
+function open_(i){
+  const m = M[i];
+  lastFocus = document.activeElement;
+  sheet.style.setProperty('--sc', m.c);
+  sheet.innerHTML = `
+    <div class="sheet-top">
+      <button class="shut" id="shut" aria-label="關閉">✕</button>
+      ${av(m)}
+      <div class="who">
+        <h3>${m.nm}</h3>
+        <div class="en2">${m.en}</div>
+        <div class="tags">
+          <span class="tg hero">${m.role}</span>
+          <span class="tg">${m.born}</span>
+          <span class="tg">${m.pos}</span>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="blk">
+        <h4>一句話</h4>
+        <p>${m.one}</p>
+      </div>
+      <div class="blk">
+        <h4>你該知道的事</h4>
+        <ul class="facts">${m.facts.map(f=>`<li>${f}</li>`).join('')}</ul>
+      </div>
+      <div class="blk">
+        <h4>物料清單</h4>
+        <div class="mats">
+          ${m.mats.map(x=>`
+            <a class="mat" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=${encodeURIComponent(x.q)}">
+              <span class="kind">${x.k}</span>
+              <span><span class="t">${x.t}</span><span class="d">${x.d}</span></span>
+              <span class="go">→</span>
+            </a>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  veil.classList.add('on');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('shut').addEventListener('click', close_);
+  document.getElementById('shut').focus();
+}
+
+function close_(){
+  veil.classList.remove('on');
+  document.body.style.overflow = '';
+  if(lastFocus) lastFocus.focus();
+}
+
+veil.addEventListener('click', e=>{ if(e.target === veil) close_(); });
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && veil.classList.contains('on')) close_(); });
+</script>
+</body>
+</html>
